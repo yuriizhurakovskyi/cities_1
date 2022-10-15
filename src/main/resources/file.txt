@@ -1,0 +1,14 @@
+Tokyo|Japan|Asia|37,468,000|Metropolis prefecture|13,515,271|2,191|6,169|39,105,000|8,231|4,751|37,274,000|13,452|2,771
+Delhi|India|Asia|28,514,000|Capital City|16,753,235|1,484|11,289|31,870,000|2,233|14,272|29,000,000|3,483|8,326
+Shanghai|China|Asia|25,582,000|Municipality|24,870,895|6,341|3,922|22,118,000|4,069|5,436
+São Paulo|Brazil|South America|21,650,000|Municipality|12,252,023|1,521|8,055|22,495,000|3,237|6,949|21,734,682|7,947|2,735
+Mexico City|Mexico|South America|21,581,000|City-state|9,209,944|1,485|6,202|21,505,000|2,385|9,017|21,804,515|7,866|2,772
+Cairo|Egypt|Africa|20,076,000|Urban governorate|9,500,000|3,085|3,079|19,787,000|2,010|9,844|—|—|—
+Chengdu|China|Asia|-|-|—|—|—
+Tokyo|Japan|Asia|37,468,000|Metropolis prefecture|13,515,271|2,191|6,169|39,105,000|8,231|4,751|37,274,000|13,452|2,771
+Delhi|India|Asia|28,514,000|Capital City|16,753,235|1,484|11,289|31,870,000|2,233|14,272|29,000,000|3,483|8,326
+Shanghai|China|Asia|25,582,000|Municipality|24,870,895|6,341|3,922|22,118,000|4,069|5,436
+São Paulo|Brazil|South America|21,650,000|Municipality|12,252,023|1,521|8,055|22,495,000|3,237|6,949|21,734,682|7,947|2,735
+Mexico City|Mexico|South America|21,581,000|City-state|9,209,944|1,485|6,202|21,505,000|2,385|9,017|21,804,515|7,866|2,772
+Cairo|Egypt|Africa|20,076,000|Urban governorate|9,500,000|3,085|3,079|19,787,000|2,010|9,844|—|—|—
+Chengdu|China|Asia|-|-|—|—|—
