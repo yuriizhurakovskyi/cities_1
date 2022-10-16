@@ -37,8 +37,9 @@ public class TreeDataStructure {
 
     public void print() {
         if (isRoot()) {
-            System.out.println("ROOT: " + name);
-            System.out.println(children.stream().map(continent -> "Continent: " + continent.name + ", " + getCountries(continent.children)).collect(Collectors.joining("; \n")));
+            LOGGER.info("\nROOT: {}\n{}", name, children.stream()
+                    .map(continent -> "Continent: " + continent.name + ", " + getCountries(continent.children))
+                    .collect(Collectors.joining("; \n")));
         }
     }
 
@@ -50,7 +51,7 @@ public class TreeDataStructure {
             String countryStr = dataFromLine.get(1);
             TreeDataStructure country = createNewCountryNode(countryStr, continent);
             String cityStr = dataFromLine.get(0);
-            TreeDataStructure city = createNewCityNode(cityStr, country);
+            createNewCityNode(cityStr, country);
         }
     }
 
@@ -59,46 +60,60 @@ public class TreeDataStructure {
     }
 
     public boolean checkIfCountryExists(String countryStr, TreeDataStructure continentNode) {
-        return continentNode.father.children.stream().map(continent -> continent.children).anyMatch(countries -> countries.stream().anyMatch(countryNode -> countryNode.name.equals(countryStr)));
+        return continentNode.father.children.stream()
+                .map(continent -> continent.children)
+                .anyMatch(countries -> countries.stream()
+                        .anyMatch(countryNode -> countryNode.name.equals(countryStr)));
     }
 
     public boolean checkIfCityExists(String cityStr, TreeDataStructure countryNode) {
-        return countryNode.father.children.stream().map(country -> country.children).anyMatch(cities -> cities.stream().anyMatch(cityNode -> cityNode.name.equals(cityStr)));
+        return countryNode.father.children.stream()
+                .map(country -> country.children)
+                .anyMatch(cities -> cities.stream()
+                        .anyMatch(cityNode -> cityNode.name.equals(cityStr)));
     }
 
     public TreeDataStructure createNewContinentNode(String continent, TreeDataStructure fatherNode) {
         if (!checkIfContinentExists(continent, fatherNode)) {
-            LOGGER.info("Adding new continent: " + continent + " to the world");
+            LOGGER.info("Adding new continent: {} to the world", continent);
             return this.addChild(continent, fatherNode);
         }
         LOGGER.info("Continent: " + continent + " already exists");
-        return fatherNode.children.stream().filter(continentNode -> continentNode.name.equals(continent)).findFirst().get();
+        return fatherNode.children.stream()
+                .filter(continentNode -> continentNode.name.equals(continent))
+                .findFirst().orElseThrow(IllegalArgumentException::new);
     }
 
     public TreeDataStructure createNewCountryNode(String country, TreeDataStructure continentNode) {
         if (!checkIfCountryExists(country, continentNode)) {
-            LOGGER.info("Adding new country: " + country + " to the continent " + continentNode.name);
+            LOGGER.info("Adding new country: {} to the continent {}", country, continentNode.name);
             return this.addChild(country, continentNode);
         }
         LOGGER.info("Country: " + country + " already exists");
-        return continentNode.children.stream().filter(countryNode -> countryNode.name.equals(country)).findFirst().get();
+        return continentNode.children.stream()
+                .filter(countryNode -> countryNode.name.equals(country))
+                .findFirst().orElseThrow(IllegalArgumentException::new);
     }
 
-    public TreeDataStructure createNewCityNode(String city, TreeDataStructure countryNode) {
+    public void createNewCityNode(String city, TreeDataStructure countryNode) {
         if (!checkIfCityExists(city, countryNode)) {
-            LOGGER.info("Adding new city: " + city + " to the country " + countryNode.name);
-            return this.addChild(city, countryNode);
+            LOGGER.info("Adding new city: {} to the country {}", city, countryNode.name);
+            TreeDataStructure city_ = this.addChild(city, countryNode);
+            LOGGER.info("City {} created", city_.name);
         }
-        LOGGER.info("City: " + city + " already exists");
-        return countryNode.children.stream().filter(cityNode -> cityNode.name.equals(city)).findFirst().get();
+        LOGGER.info("City: {} already exists", city);
     }
 
     public String getCountries(List<TreeDataStructure> countries) {
-        return countries.stream().map(country -> "Country: " + country.name + ", " + getCities(country.children)).collect(Collectors.joining("; \n"));
+        return countries.stream()
+                .map(country -> "Country: " + country.name + ", " + getCities(country.children))
+                .collect(Collectors.joining("; \n"));
     }
 
     public String getCities(List<TreeDataStructure> cities) {
-        return cities.stream().map(city -> "City: " + city.name).collect(Collectors.joining("; \n"));
+        return cities.stream()
+                .map(city -> "City: " + city.name)
+                .collect(Collectors.joining("; \n"));
     }
 
 
