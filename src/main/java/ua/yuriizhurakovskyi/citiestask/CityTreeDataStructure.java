@@ -10,17 +10,17 @@ import java.util.stream.Collectors;
 
 import static ua.yuriizhurakovskyi.citiestask.ReadDataUtils.receiveDataListFromLine;
 
-public class TreeDataStructure {
+public class CityTreeDataStructure {
     private final String name;
-    private final List<TreeDataStructure> children = new ArrayList<>();
-    private TreeDataStructure father;
-    private static final Logger LOGGER = LogManager.getLogger(TreeDataStructure.class);
+    private final List<CityTreeDataStructure> children = new ArrayList<>();
+    private CityTreeDataStructure father;
+    private static final Logger LOGGER = LogManager.getLogger(CityTreeDataStructure.class);
 
-    public TreeDataStructure(String name) {
+    public CityTreeDataStructure(String name) {
         this.name = name;
     }
 
-    public TreeDataStructure(String name, TreeDataStructure father) {
+    public CityTreeDataStructure(String name, CityTreeDataStructure father) {
         this.name = name;
         this.father = father;
     }
@@ -29,8 +29,8 @@ public class TreeDataStructure {
         return father == null;
     }
 
-    public TreeDataStructure addChild(String name, TreeDataStructure father) {
-        TreeDataStructure child = new TreeDataStructure(name, father);
+    public CityTreeDataStructure addChild(String name, CityTreeDataStructure father) {
+        CityTreeDataStructure child = new CityTreeDataStructure(name, father);
         father.children.add(child);
         return child;
     }
@@ -43,37 +43,37 @@ public class TreeDataStructure {
         }
     }
 
-    public void fillDataSourceStructure(TreeDataStructure fatherNode, List<String> fileLines) {
+    public void fillDataSourceStructure(CityTreeDataStructure fatherNode, List<String> fileLines) {
         for (String fileLine : fileLines) {
             List<String> dataFromLine = receiveDataListFromLine(fileLine);
             String continentStr = dataFromLine.get(2);
-            TreeDataStructure continent = createNewContinentNode(continentStr, fatherNode);
+            CityTreeDataStructure continent = createNewContinentNode(continentStr, fatherNode);
             String countryStr = dataFromLine.get(1);
-            TreeDataStructure country = createNewCountryNode(countryStr, continent);
+            CityTreeDataStructure country = createNewCountryNode(countryStr, continent);
             String cityStr = dataFromLine.get(0);
             createNewCityNode(cityStr, country);
         }
     }
 
-    public boolean checkIfContinentExists(String continentStr, TreeDataStructure worldNode) {
+    public boolean checkIfContinentExists(String continentStr, CityTreeDataStructure worldNode) {
         return worldNode.children.stream().anyMatch(continent -> continent.name.equals(continentStr));
     }
 
-    public boolean checkIfCountryExists(String countryStr, TreeDataStructure continentNode) {
+    public boolean checkIfCountryExists(String countryStr, CityTreeDataStructure continentNode) {
         return continentNode.father.children.stream()
                 .map(continent -> continent.children)
                 .anyMatch(countries -> countries.stream()
                         .anyMatch(countryNode -> countryNode.name.equals(countryStr)));
     }
 
-    public boolean checkIfCityExists(String cityStr, TreeDataStructure countryNode) {
+    public boolean checkIfCityExists(String cityStr, CityTreeDataStructure countryNode) {
         return countryNode.father.children.stream()
                 .map(country -> country.children)
                 .anyMatch(cities -> cities.stream()
                         .anyMatch(cityNode -> cityNode.name.equals(cityStr)));
     }
 
-    public TreeDataStructure createNewContinentNode(String continent, TreeDataStructure fatherNode) {
+    public CityTreeDataStructure createNewContinentNode(String continent, CityTreeDataStructure fatherNode) {
         if (!checkIfContinentExists(continent, fatherNode)) {
             LOGGER.info("Adding new continent: {} to the world", continent);
             return this.addChild(continent, fatherNode);
@@ -84,7 +84,7 @@ public class TreeDataStructure {
                 .findFirst().orElseThrow(IllegalArgumentException::new);
     }
 
-    public TreeDataStructure createNewCountryNode(String country, TreeDataStructure continentNode) {
+    public CityTreeDataStructure createNewCountryNode(String country, CityTreeDataStructure continentNode) {
         if (!checkIfCountryExists(country, continentNode)) {
             LOGGER.info("Adding new country: {} to the continent {}", country, continentNode.name);
             return this.addChild(country, continentNode);
@@ -95,22 +95,22 @@ public class TreeDataStructure {
                 .findFirst().orElseThrow(IllegalArgumentException::new);
     }
 
-    public void createNewCityNode(String city, TreeDataStructure countryNode) {
+    public void createNewCityNode(String city, CityTreeDataStructure countryNode) {
         if (!checkIfCityExists(city, countryNode)) {
             LOGGER.info("Adding new city: {} to the country {}", city, countryNode.name);
-            TreeDataStructure city_ = this.addChild(city, countryNode);
+            CityTreeDataStructure city_ = this.addChild(city, countryNode);
             LOGGER.info("City {} created", city_.name);
         }
         LOGGER.info("City: {} already exists", city);
     }
 
-    public String getCountries(List<TreeDataStructure> countries) {
+    public String getCountries(List<CityTreeDataStructure> countries) {
         return countries.stream()
                 .map(country -> "Country: " + country.name + ", " + getCities(country.children))
                 .collect(Collectors.joining("; \n"));
     }
 
-    public String getCities(List<TreeDataStructure> cities) {
+    public String getCities(List<CityTreeDataStructure> cities) {
         return cities.stream()
                 .map(city -> "City: " + city.name)
                 .collect(Collectors.joining("; \n"));
@@ -120,7 +120,7 @@ public class TreeDataStructure {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TreeDataStructure that)) return false;
+        if (!(o instanceof CityTreeDataStructure that)) return false;
         return Objects.equals(name, that.name) && Objects.equals(father, that.father);
     }
 

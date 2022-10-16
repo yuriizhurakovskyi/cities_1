@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="627e7796-1965-4ae6-a076-3830cc6b4faf" name="Changes" comment="Formatted code.">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-20221015.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ua/yuriizhurakovskyi/citiestask/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/yuriizhurakovskyi/citiestask/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/yuriizhurakovskyi/citiestask/TreeDataStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/yuriizhurakovskyi/citiestask/TreeDataStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/yuriizhurakovskyi/citiestask/TreeDataStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/yuriizhurakovskyi/citiestask/CityTreeDataStructure.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +61,7 @@
       <module name="cities_1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ua.yuriizhurakovskyi.citiestask.TreeDataStructure" />
+          <option name="PATTERN" value="ua.yuriizhurakovskyi.citiestask.CityTreeDataStructure" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -91,8 +89,16 @@
       <workItem from="1665815914917" duration="4799000" />
       <workItem from="1665826979267" duration="870000" />
       <workItem from="1665828175616" duration="1090000" />
-      <workItem from="1665901998580" duration="3369000" />
+      <workItem from="1665901998580" duration="3871000" />
     </task>
+    <task id="LOCAL-00001" summary="Formatted code.">
+      <created>1665905599188</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665905599188</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

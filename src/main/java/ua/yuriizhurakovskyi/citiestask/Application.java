@@ -14,11 +14,11 @@ public class Application {
         String file = "src/main/resources/file.txt";
         LOGGER.info(String.join("\n", readFile(file)));
 
-        TreeDataStructure treeDataStructure = new TreeDataStructure("World");
+        CityTreeDataStructure cityTreeDataStructure = new CityTreeDataStructure("World");
 
         List<String> lines = readFile(file);
-        treeDataStructure.fillDataSourceStructure(treeDataStructure, lines);
+        cityTreeDataStructure.fillDataSourceStructure(cityTreeDataStructure, lines);
 
-        treeDataStructure.print();
+        cityTreeDataStructure.print();
     }
 }
